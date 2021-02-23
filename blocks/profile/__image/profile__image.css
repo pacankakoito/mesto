@@ -1,0 +1,12 @@
+.profile__image{
+    grid-area: profile__image;
+    width: 127px;
+    border-radius: 63.5px;
+    border: solid 3px red;
+    margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+    .profile__image{
+        margin: 0 1.2890625rem 0 1.2890625rem;
+    }
+}
