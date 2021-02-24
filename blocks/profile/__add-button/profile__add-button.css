@@ -1,6 +1,6 @@
 .profile__add-button{
     grid-area: profile__add-button;
-    object-fit: contain;
+    object-fit: scale-down;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -10,6 +10,11 @@
     box-sizing: border-box;
     border-radius: 2px;
     height: 50px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.profile__add-button:hover{
+    opacity:0.6;
 }
 @media screen and (min-width: 768px) {
     .profile__add-button{

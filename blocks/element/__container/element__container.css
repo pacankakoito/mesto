@@ -1,0 +1,7 @@
+.element__container{
+    width: 85.8156%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: solid 3px red;
+}

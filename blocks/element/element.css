@@ -1,0 +1,28 @@
+.element{
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #FFFFFF;
+    /* border: solid 3px red; */
+    max-width: 282px;
+    height: 362px;
+    border-radius: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+@media screen and (min-width: 768px) {
+    .element {
+        justify-self: end;
+    }
+    .element:nth-child(2n){
+        justify-self: start;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .element {
+        justify-self: center;
+    }
+  }
