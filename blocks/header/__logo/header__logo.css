@@ -4,7 +4,7 @@
     margin:0;
     max-width: 103.74px;
     border: solid 3px red;
-    margin-left: 1.6875rem;
+    /* margin-left: 1.6875rem; */
  }
 
 @media screen and (min-width: 768px) {

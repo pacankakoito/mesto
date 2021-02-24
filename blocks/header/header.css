@@ -4,9 +4,9 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 88.125%;
     padding: 1.75rem 0 0 0;
-    /* border: solid 3px red; */
+    border: solid 3px red;
 }
 
 @media screen and (min-width: 768px) {
