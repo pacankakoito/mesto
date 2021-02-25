@@ -1,0 +1,11 @@
+.edit-form__line{
+    opacity: 0.2;
+    border-top: 1px solid #000000;
+    max-width: 100%;
+    margin-top: 0.625rem;
+}
+/* @media screen and (min-width: 768px) {
+    .edit-form__line{
+        margin-top: 2.5625rem;
+    }
+} */
