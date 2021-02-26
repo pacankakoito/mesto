@@ -6,7 +6,6 @@
     margin: 0 auto;
     max-width: 88.125%;
     padding: 3rem 0 2.25rem 0;
-    border: solid 3px red;
 }
 
 @media screen and (min-width: 768px) {

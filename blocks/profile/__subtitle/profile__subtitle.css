@@ -8,7 +8,6 @@
     text-align: center;
     color: #FFFFFF;
     margin: 0;
-    border: solid 3px red;
     justify-self: center;
 }
 @media screen and (min-width: 768px) {

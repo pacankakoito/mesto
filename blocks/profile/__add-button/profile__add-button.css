@@ -1,11 +1,15 @@
 .profile__add-button{
     grid-area: profile__add-button;
     object-fit: scale-down;
-    background: transparent;
+    background: #000000;
+    background-image: url('../../../images/profile__add-button.svg');
+    background-position: center;
+    background-repeat: no-repeat;
     border: none;
     cursor: pointer;
     padding: 0;
-    max-width: 100%;
+    margin: 0 auto;
+    width: 282px;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 2px;
@@ -18,7 +22,9 @@
 }
 @media screen and (min-width: 768px) {
     .profile__add-button{
+        margin: 0;
         width: 150px;
-        align-self: center;
+        align-self: flex-start;
+        margin-top: 2.421875rem;
     }
 }
