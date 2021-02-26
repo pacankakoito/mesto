@@ -11,7 +11,7 @@
     grid-template-columns: repeat(2, minmax(min-content, max-content));
     grid-template-areas:
         "profile__title profile__edit-button"
-        "profile__subtitle profile__subtitle"
+        "profile__subtitle profile__subtitle";
 }
 @media screen and (min-width: 768px) {
     .profile__info{
