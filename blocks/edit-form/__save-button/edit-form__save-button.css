@@ -1,4 +1,4 @@
-.popup__save-button{
+.edit-form__save-button{
     height: 46px;
     background: #000000;
     border-radius: 2px;
@@ -13,12 +13,12 @@
     opacity: 1;
     transition: opacity 0.5s ease;
 }
-.popup__save-button:hover{
+.edit-form__save-button:hover{
     opacity:0.6;
 }
-
+ 
 @media screen and (min-width: 465px) {
-    .popup__save-button{
+    .edit-form__save-button{
         margin-top: 3rem;
         height: 50px;
     }
