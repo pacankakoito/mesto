@@ -13,14 +13,14 @@ let profileJob=profile.querySelector(".profile__subtitle");// Воспользу
 
 //функция открытия попапа: слушатель определяет клик и подмиксовывает селектор
 function showPopup(){
-    popup.classList.add('popup_is-opened');
+    popup.classList.add('popup_opened');
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 }
 
 //функция закрытия попапа: слушатель определяет клик и подмиксовывает селектор
 function closePopup(){
-    popup.classList.remove('popup_is-opened');
+    popup.classList.remove('popup_opened');
 }
 
 
