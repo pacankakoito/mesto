@@ -29,6 +29,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
      profileName.textContent = nameInput.value;
      profileJob.textContent = jobInput.value; // Вставьте новые значения с помощью textContent
+     closePopup();//закрыли попап после сохранения
 }
  
 
@@ -38,4 +39,3 @@ function formSubmitHandler (evt) {
 editButton.addEventListener('click', showPopup);
 closePopupButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
-formElement.addEventListener('submit', closePopup);  

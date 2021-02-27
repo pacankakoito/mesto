@@ -7,3 +7,9 @@
     color: #545454;
     margin: 0;
 }
+@media screen and (min-width: 768px) {
+    .footer__copyright{
+        font-size: 1.125rem;
+        line-height: 1.375;
+    }
+}

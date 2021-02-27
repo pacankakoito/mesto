@@ -4,10 +4,11 @@
     justify-content: flex-start;
     align-content: center;
     margin: 0;
-    padding: 0;
+    padding: 2.390625rem 0 0 0;
 }
 @media screen and (min-width: 768px) {
     .profile__container{
+        padding-top: 0;
         flex-direction: row;
         justify-content: flex-start;
     }

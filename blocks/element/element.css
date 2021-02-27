@@ -5,9 +5,7 @@
     justify-content: flex-start;
     align-items: center;
     background-color: #FFFFFF;
-    /* border: solid 3px red; */
     max-width: 282px;
-    height: 362px;
     border-radius: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;

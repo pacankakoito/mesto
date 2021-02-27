@@ -5,21 +5,31 @@
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     line-height: 1.22;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 2.8125rem;
+    cursor: pointer;
+    border: none;
+    padding:0;
+    margin: 2.6875rem 0 1.4375rem 0;
     opacity: 1;
     transition: opacity 0.5s ease;
 }
 .edit-form__save-button:hover{
-    opacity:0.6;
+    opacity:0.8;
 }
  
 @media screen and (min-width: 465px) {
     .edit-form__save-button{
-        margin-top: 3rem;
+        margin: 2.875rem 0 2.12875rem 0;
         height: 50px;
+    }
+}
+ 
+@media screen and (min-width: 768px) {
+    .edit-form__save-button{
+        font-size: 1.125rem;
+        line-height: 1.22;
     }
 }
