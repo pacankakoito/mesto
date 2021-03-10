@@ -102,6 +102,7 @@ function closePopup(element){
  }
 
 
+ 
 
 editButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', openAddPopup);
@@ -110,15 +111,13 @@ closePopupAddButton.addEventListener('click', closePopupAdd);
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
-
-
 initElements(initialCards);
 
-// let likeButton = document.querySelectorAll('.element__like');
+let likeButton = document.querySelectorAll('.element__like');//объяаляем переменную здесь после инициализации стартовых карточек
 
-// likeButton.addEventListener('click', likeToggle);
-
-//  function likeToggle(){
-//      evt.target.classList.toggle('.element__like_is-active');
-//   }
-
+likeButton.forEach(function(item){ //пробегаемся по всем лайкам, при нажатии меняем состояние
+    item.addEventListener('click', 
+        function likeToggle(){
+            item.classList.toggle('element__like_is-active');
+    });
+});
