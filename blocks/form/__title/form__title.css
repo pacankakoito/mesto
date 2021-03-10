@@ -1,4 +1,4 @@
-.edit-form__title{
+.form__title{
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -13,7 +13,7 @@
     
 }
 @media screen and (min-width: 768px) {
-    .edit-form__title{
+    .form__title{
         font-size: 1.5rem;
         line-height: 1;
         text-align: left;

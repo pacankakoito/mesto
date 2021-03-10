@@ -1,4 +1,4 @@
-.edit-form__field{
+.form__field{
     border: none;
     padding: 0;
     margin: 0;
@@ -9,7 +9,7 @@
     padding-top: 2.8125rem;
 }
 @media screen and (min-width: 465px) {
-    .edit-form__field{
+    .form__field{
         padding-top: 1.5rem;
     }
 }
