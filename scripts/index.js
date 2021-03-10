@@ -58,13 +58,13 @@ function createCard(name, link) {
     card.querySelector('.element__image').src = link;//присвоили значения
     card.querySelector('.element__image').alt = name;
     card.querySelector('.element__title').textContent = name;
-    elementList.append(card);
+    elementList.prepend(card);//делаем список карточек, карточка добавляется с начала в конец
   }
-  function initElements(arr) {//инициализировали заполнение
-    arr.forEach(elem => {
-      createCard(elem.name, elem.link);
-    });
-  }
+function initElements(array) {//инициализировали заполнение
+  array.forEach(function(item){
+    createCard(item.name, item.link);
+  });
+}
 
 function openEditPopup() { //открытие попапа для редактирования
     nameInput.value = profileName.textContent;
@@ -73,6 +73,8 @@ function openEditPopup() { //открытие попапа для редакти
 }
 function openAddPopup(){
     popupAdd.classList.add('popup_opened');
+    titleInput.value="";
+    linkInput.value="";
 }
 
 
@@ -85,7 +87,7 @@ function formEditSubmitHandler (evt) {
 function formAddSubmitHandler (evt) {
     evt.preventDefault();
 
-    createCard(titleInput.value, linkInput.value, 'apppend');
+    createCard(titleInput.value, linkInput.value, 'prepend');
     closePopupAdd(); //закрыли попап после сохранения
 }
 
