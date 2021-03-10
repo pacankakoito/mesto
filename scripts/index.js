@@ -33,8 +33,6 @@ let popupAdd = document.querySelector('.popup_type_add');
 let closePopupEditButton = document.querySelector('#popup-edit__close-button');
 let closePopupAddButton = document.querySelector('#popup-add__close-button');
 
-// Находим форму в DOM
-
 
 let formEdit=document.querySelector('#form-edit');
 let nameInput=formEdit.querySelector('.form-edit__input_type_name');// Воспользуйтесь инструментом .querySelector()
@@ -49,8 +47,9 @@ let profileName=profile.querySelector(".profile__title"); // Воспользу�
 let profileJob=profile.querySelector(".profile__subtitle");// Воспользуйтесь инструментом .querySelector()
 
 
-
 let elementList = document.querySelector('.elements__list');
+
+
 
 function createCard(name, link) {
     const templateElement = document.querySelector('#template').content;//нашли темплейт
@@ -69,22 +68,22 @@ function initElements(array) {//инициализировали заполне�
 function openEditPopup() { //открытие попапа для редактирования
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent; // Вставьте новые значения с помощью textContent
-    popupEdit.classList.add('popup_opened');
+    popupEdit.classList.toggle('popup_opened');
 }
 function openAddPopup(){
-    popupAdd.classList.add('popup_opened');
+    popupAdd.classList.toggle('popup_opened');
     titleInput.value="";
     linkInput.value="";
 }
 
 
-function formEditSubmitHandler (evt) {
+function formEditSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value; // Вставьте новые значения с помощью textContent
     closePopupEdit(); //закрыли попап после сохранения
 }
-function formAddSubmitHandler (evt) {
+function formAddSubmitHandler(evt) {
     evt.preventDefault();
 
     createCard(titleInput.value, linkInput.value, 'prepend');
@@ -99,16 +98,27 @@ function closePopupAdd(){
     closePopup(popupAdd);
 }
 function closePopup(element){ 
-    element.classList.remove('popup_opened');//функция для закрытия попапов
-
+    element.classList.toggle('popup_opened');//функция для закрытия попапов
  }
+
+
 
 editButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', openAddPopup);
 closePopupEditButton.addEventListener('click', closePopupEdit);
 closePopupAddButton.addEventListener('click', closePopupAdd);
-
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
+
+
 initElements(initialCards);
+
+// let likeButton = document.querySelectorAll('.element__like');
+
+// likeButton.addEventListener('click', likeToggle);
+
+//  function likeToggle(){
+//      evt.target.classList.toggle('.element__like_is-active');
+//   }
+
