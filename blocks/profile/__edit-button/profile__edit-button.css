@@ -9,7 +9,8 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    justify-self: flex-start;
+    margin-top: 0.6rem;
+    align-self: flex-start;
     width: 18px;
     height: 18px;
     opacity: 1;
@@ -23,7 +24,8 @@
     .profile__edit-button{
         width: 24px;
         height: 24px;
-        align-self: center;
-        justify-content: start;
+        margin-top: 1rem;
+        align-self: flex-start;
+        justify-content: flex-start;
     }
 }

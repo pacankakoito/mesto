@@ -9,6 +9,11 @@
     color: #FFFFFF;
     margin: 0;
     justify-self: flex-end;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
 }
 @media screen and (min-width: 768px) {
     .profile__title{
@@ -16,5 +21,11 @@
         align-self: end;
         font-size: 2.625rem;
         line-height: 1.14;
+        max-width: 320px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .profile__title{
+        max-width: 500px;
     }
 }
