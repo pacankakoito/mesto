@@ -54,9 +54,13 @@ let elementList = document.querySelector('.elements__list');
 function createCard(name, link) {
     const templateElement = document.querySelector('#template').content;//нашли темплейт
     const card = templateElement.cloneNode(true);//клонировали ноду
+    const likeButton = card.querySelector('.element__like');
+	const deleteButton = card.querySelector('.element__delete');
     card.querySelector('.element__image').src = link;//присвоили значения
     card.querySelector('.element__image').alt = name;
     card.querySelector('.element__title').textContent = name;
+    likeButton.addEventListener('click', likeCard);//пользуемся функцией лайк
+	deleteButton.addEventListener('click', deleteCard);
     elementList.prepend(card);//делаем список карточек, карточка добавляется с начала в конец
   }
 function initElements(array) {//инициализировали заполнение
@@ -101,6 +105,12 @@ function closePopup(element){
     element.classList.toggle('popup_opened');//функция для закрытия попапов
  }
 
+function likeCard(evt) {
+	evt.target.classList.toggle('element__like_is-active')
+}
+function deleteCard(evt){
+	evt.target.closest('.element').remove();
+}
 
  
 
@@ -113,11 +123,4 @@ formAdd.addEventListener('submit', formAddSubmitHandler);
 
 initElements(initialCards);
 
-let likeButton = document.querySelectorAll('.element__like');//объяаляем переменную здесь после инициализации стартовых карточек
 
-likeButton.forEach(function(item){ //пробегаемся по всем лайкам, при нажатии меняем состояние
-    item.addEventListener('click', 
-        function likeToggle(){
-            item.classList.toggle('element__like_is-active');
-    });
-});
