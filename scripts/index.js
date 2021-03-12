@@ -38,12 +38,12 @@ let closePopupAddButton = document.querySelector('#popup-add__close-button');
 let closePopupPhotoButton = document.querySelector('#popup-photo__close-button');
 
 let formEdit=document.querySelector('#form-edit');
-let nameInput=formEdit.querySelector('.form__field_type_name');// Воспользуйтесь инструментом .querySelector()
-let jobInput=formEdit.querySelector('.form__field_type_job');// Воспользуйтесь инструментом .querySelector()
+let nameInput=formEdit.querySelector('.form__input_type_name');// Воспользуйтесь инструментом .querySelector()
+let jobInput=formEdit.querySelector('.form__input_type_job');// Воспользуйтесь инструментом .querySelector()
 // Находим профиль в DOM
 let formAdd=document.querySelector('#form-add');
-let titleInput=formAdd.querySelector('.form__field_type_title');// Воспользуйтесь инструментом .querySelector()
-let linkInput=formAdd.querySelector('.form__field_type_link');// Воспользуйтесь инструментом .querySelector()
+let titleInput=formAdd.querySelector('.form__input_type_title');// Воспользуйтесь инструментом .querySelector()
+let linkInput=formAdd.querySelector('.form__input_type_link');// Воспользуйтесь инструментом .querySelector()
 
 let profile=document.querySelector(".profile"); // Воспользуйтесь инструментом .querySelector()
 let profileName=profile.querySelector(".profile__title"); // Воспользуйтесь инструментом .querySelector()
