@@ -25,34 +25,34 @@ const initialCards = [
     }
   ]; 
 
-let editButton = document.querySelector('.profile__edit-button');//нашли кнопку изменить
-let addButton = document.querySelector('.profile__add-button');//нашли кнопку добавить
+const editButton = document.querySelector('.profile__edit-button');//нашли кнопку изменить
+const addButton = document.querySelector('.profile__add-button');//нашли кнопку добавить
 
-let popup = document.querySelector('.popup');
-let popupEdit = document.querySelector('.popup_type_edit');
-let popupAdd = document.querySelector('.popup_type_add');
-let popupPhoto = document.querySelector('.popup_type_photo');
+const popup = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAdd = document.querySelector('.popup_type_add');
+const popupPhoto = document.querySelector('.popup_type_photo');
 
-let closePopupEditButton = document.querySelector('#popup-edit__close-button');
-let closePopupAddButton = document.querySelector('#popup-add__close-button');
-let closePopupPhotoButton = document.querySelector('#popup-photo__close-button');
+const closePopupEditButton = document.querySelector('#popup-edit__close-button');
+const closePopupAddButton = document.querySelector('#popup-add__close-button');
+const closePopupPhotoButton = document.querySelector('#popup-photo__close-button');
 
-let formEdit=document.querySelector('#form-edit');
-let nameInput=formEdit.querySelector('.form__input_type_name');// Воспользуйтесь инструментом .querySelector()
-let jobInput=formEdit.querySelector('.form__input_type_job');// Воспользуйтесь инструментом .querySelector()
+const formEdit=document.querySelector('#form-edit');
+const nameInput=formEdit.querySelector('.form__input_type_name');// Воспользуйтесь инструментом .querySelector()
+const jobInput=formEdit.querySelector('.form__input_type_job');// Воспользуйтесь инструментом .querySelector()
 // Находим профиль в DOM
-let formAdd=document.querySelector('#form-add');
-let titleInput=formAdd.querySelector('.form__input_type_title');// Воспользуйтесь инструментом .querySelector()
-let linkInput=formAdd.querySelector('.form__input_type_link');// Воспользуйтесь инструментом .querySelector()
+const formAdd=document.querySelector('#form-add');
+const titleInput=formAdd.querySelector('.form__input_type_title');// Воспользуйтесь инструментом .querySelector()
+const linkInput=formAdd.querySelector('.form__input_type_link');// Воспользуйтесь инструментом .querySelector()
 
-let profile=document.querySelector(".profile"); // Воспользуйтесь инструментом .querySelector()
-let profileName=profile.querySelector(".profile__title"); // Воспользуйтесь инструментом .querySelector()
-let profileJob=profile.querySelector(".profile__subtitle");// Воспользуйтесь инструментом .querySelector()
+const profile=document.querySelector(".profile"); // Воспользуйтесь инструментом .querySelector()
+const profileName=profile.querySelector(".profile__title"); // Воспользуйтесь инструментом .querySelector()
+const profileJob=profile.querySelector(".profile__subtitle");// Воспользуйтесь инструментом .querySelector()
 
-let elementList = document.querySelector('.elements__list');
+const elementList = document.querySelector('.elements__list');
 
-let picturePopup=document.querySelector('.popup__image');
-let captionPopup=document.querySelector('.popup__caption');
+const picturePopup=document.querySelector('.popup__image');
+const captionPopup=document.querySelector('.popup__caption');
 
 
 function createCard(name, link) {
@@ -65,17 +65,13 @@ function createCard(name, link) {
     image.alt = name;
     card.querySelector('.element__title').textContent = name;
     likeButton.addEventListener('click', likeCard);//cслушаем кнопку и пользуемся функцией лайк
-    likeButton.addEventListener('click', likeCard);
 	deleteButton.addEventListener('click', deleteCard);//cслушаем кнопку и пользуемся функцией удалить
     image.addEventListener('click', renderPopupPhoto);
-    elementList.prepend(card);//делаем список карточек, карточка добавляется с начала в конец
+    addCard(card);
 }
-// function addCard(evt){
-//     evt.preventDefault();
-//     // elementList.prepend(card);
-//     createCard(item.name, item.link, 'prepend');
-//     closePopupAdd();
-// }
+function addCard(card){
+    elementList.prepend(card);
+}
 
 function initElements(array) {//инициализировали заполнение
   array.forEach(function(item){
@@ -97,6 +93,7 @@ function renderPopupAdd(){
 function renderPopupPhoto(evt){
     picturePopup.src=evt.target.src;//задаем значения, отталкиваясь от события (URL картинки копируем)
     captionPopup.textContent=evt.target.alt;//задаем значения, отталкиваясь от события (копируем заголовок)
+    picturePopup.alt=evt.target.alt;
     openPopupPhoto();
 }
 
