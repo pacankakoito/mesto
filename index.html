@@ -22,68 +22,62 @@
             <button class="profile__add-button" type="button"></button>
         </section>
         <section class="elements">
-            <ul class="elements__list">
-                <li class="element">
-                    <img src="images/Bashkortostan.jpg" alt="Башкортостан" class="element__image">
-                    <div class="element__container">
-                        <h2 class="element__title">Республика Башкортостан</h2>
-                        <button class="element__like" type="button"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="images/Miass.jpg" alt="Миасс" class="element__image">
-                    <div class="element__container">
-                        <h2 class="element__title">Миасс</h2>
-                        <button class="element__like" type="button"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="images/Moscow.jpg" alt="Москва" class="element__image">
-                    <div class="element__container">
-                        <h2 class="element__title">Москва</h2>
-                        <button class="element__like" type="button"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="images/Taganay.jpg" alt="Таганай" class="element__image">
-                    <div class="element__container">
-                        <h2 class="element__title">Таганай</h2>
-                        <button class="element__like" type="button"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="images/Ural.jpg" alt="Урал" class="element__image">
-                    <div class="element__container">
-                        <h2 class="element__title">Урал</h2>
-                        <button class="element__like" type="button"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="images/Kazan.jpg" alt="Казань" class="element__image">    
-                    <div class="element__container">
-                        <h2 class="element__title">Казань</h2>
-                        <button class="element__like" type="button"></button>
-                    </div>
-                </li>
-            </ul>
+           <ul class="elements__list">
+           </ul>
         </section>
     </main>
     <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
+        <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit">
         <div class="popup__container">
-            <form class="edit-form" name="form-info" novalidate>
-                <h2 class="edit-form__title">Редактировать профиль</h2>
-                <fieldset class="edit-form__field ">
-                    <input name="name" type="text" class="edit-form__input edit-form__input_type_name" placeholder="Имя">
-                    <input name="job" type="text" class="edit-form__input edit-form__input_type_job" placeholder="Описание">
-                    <button class="edit-form__save-button" type="submit">Сохранить</button>
+            <form class="form" name="form-edit" id="form-edit" novalidate>
+                <h2 class="form__title">Редактировать профиль</h2>
+                <fieldset class="form__field ">
+                    <input name="name" type="text" class="form__input form__input_type_name" placeholder="Имя">
+                    <input name="job" type="text" class="form__input form__input_type_job" placeholder="Описание">
+                    <button class="form__save-button" type="submit">Сохранить</button>
                 </fieldset>
             </form>
-            <button class="popup__close-button" type="button"></button>
+            <button class="popup__close-button" id="popup-edit__close-button" type="button"></button>
         </div>
     </div>
+
+    <div class="popup popup_type_add">
+        <div class="popup__container">
+            <form class="form" name="form-add" id="form-add" novalidate>
+                <h2 class="form__title">Новое Место</h2>
+                <fieldset class="form__field ">
+                    <input name="title" type="text" class="form__input form__input_type_title" placeholder="Название">
+                    <input name="link" type="text" class="form__input form__input_type_link" placeholder="Ссылка на контейнер">
+                    <button class="form__save-button" type="submit">Сохранить</button>
+                </fieldset>
+            </form>
+            <button class="popup__close-button" id="popup-add__close-button" type="button"></button>
+        </div>
+    </div>
+
+    <div class="popup popup_type_photo">
+        <div class="popup__container popup__container_type_photo">
+            <div class="popup__data">
+                <img src=" " alt=" " class="popup__image">
+                <p class="popup__caption"></p>
+            </div>
+            <button class="popup__close-button" id="popup-photo__close-button" type="button"></button>
+        </div>
+    </div>
+
+    <template class="elements__list" id="template">
+        <li class="element">
+            <img src=" " alt=" " class="element__image">
+            <button class="element__delete" type="button"></button>
+            <div class="element__container">
+                <h2 class="element__title"></h2>
+                <button class="element__like" type="button"></button>
+            </div>
+        </li>
+    </template>
+
     <script src="scripts/index.js"></script>
 </body>
 </html>
