@@ -49,9 +49,10 @@ let profile=document.querySelector(".profile"); // Воспользуйтесь 
 let profileName=profile.querySelector(".profile__title"); // Воспользуйтесь инструментом .querySelector()
 let profileJob=profile.querySelector(".profile__subtitle");// Воспользуйтесь инструментом .querySelector()
 
-
 let elementList = document.querySelector('.elements__list');
 
+let picturePopup=document.querySelector('.popup__image');
+let captionPopup=document.querySelector('.popup__caption');
 
 
 function createCard(name, link) {
@@ -68,7 +69,14 @@ function createCard(name, link) {
 	deleteButton.addEventListener('click', deleteCard);//cслушаем кнопку и пользуемся функцией удалить
     image.addEventListener('click', renderPopupPhoto);
     elementList.prepend(card);//делаем список карточек, карточка добавляется с начала в конец
-  }
+}
+// function addCard(evt){
+//     evt.preventDefault();
+//     // elementList.prepend(card);
+//     createCard(item.name, item.link, 'prepend');
+//     closePopupAdd();
+// }
+
 function initElements(array) {//инициализировали заполнение
   array.forEach(function(item){
     createCard(item.name, item.link);
@@ -78,7 +86,6 @@ function initElements(array) {//инициализировали заполне�
 function renderPopupEdit() { //открытие попапа для редактирования
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent; // Вставьте новые значения с помощью textContent
-    // popupEdit.classList.toggle('popup_opened');
     openPopupEdit();
 }
 function renderPopupAdd(){
@@ -88,13 +95,8 @@ function renderPopupAdd(){
 }
 
 function renderPopupPhoto(evt){
-    let picturePopup=document.querySelector('.popup__image');
-    let captionPopup=document.querySelector('.popup__caption');
-    let dataPopup=evt.path[1];
-    let imageCard = dataPopup.querySelector('.element__image');
-    let titleCard = dataPopup.querySelector('.element__title')
-    picturePopup.src=imageCard.src;//задаем значения, отталкиваясь от события
-    captionPopup.textContent=titleCard.textContent;
+    picturePopup.src=evt.target.src;//задаем значения, отталкиваясь от события (URL картинки копируем)
+    captionPopup.textContent=evt.target.alt;//задаем значения, отталкиваясь от события (копируем заголовок)
     openPopupPhoto();
 }
 
