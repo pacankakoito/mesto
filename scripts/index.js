@@ -66,7 +66,7 @@ function createCard(name, link) {
     likeButton.addEventListener('click', likeCard);//cслушаем кнопку и пользуемся функцией лайк
     likeButton.addEventListener('click', likeCard);
 	deleteButton.addEventListener('click', deleteCard);//cслушаем кнопку и пользуемся функцией удалить
-    image.addEventListener('click', openPopupPhoto);
+    image.addEventListener('click', renderPopupPhoto);
     elementList.prepend(card);//делаем список карточек, карточка добавляется с начала в конец
   }
 function initElements(array) {//инициализировали заполнение
@@ -75,18 +75,19 @@ function initElements(array) {//инициализировали заполне�
   });
 }
 
-function openPopupEdit() { //открытие попапа для редактирования
+function renderPopupEdit() { //открытие попапа для редактирования
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent; // Вставьте новые значения с помощью textContent
-    popupEdit.classList.toggle('popup_opened');
+    // popupEdit.classList.toggle('popup_opened');
+    openPopupEdit();
 }
-function openPopupAdd(){
+function renderPopupAdd(){
     titleInput.value="";
     linkInput.value="";
-    popupAdd.classList.toggle('popup_opened');
+    openPopupAdd();
 }
 
-function openPopupPhoto(evt){
+function renderPopupPhoto(evt){
     let picturePopup=document.querySelector('.popup__image');
     let captionPopup=document.querySelector('.popup__caption');
     let dataPopup=evt.path[1];
@@ -94,7 +95,7 @@ function openPopupPhoto(evt){
     let titleCard = dataPopup.querySelector('.element__title')
     picturePopup.src=imageCard.src;//задаем значения, отталкиваясь от события
     captionPopup.textContent=titleCard.textContent;
-    popupPhoto.classList.toggle('popup_opened');
+    openPopupPhoto();
 }
 
 
@@ -109,6 +110,17 @@ function formAddSubmitHandler(evt) {
     createCard(titleInput.value, linkInput.value, 'prepend');
     closePopupAdd(); //закрыли попап после сохранения
 }
+
+function openPopupEdit(){
+    openPopup(popupEdit);
+}
+function openPopupAdd(){
+    openPopup(popupAdd);
+}
+function openPopupPhoto(){
+    openPopup(popupPhoto);
+}
+
 function closePopupEdit(){
     closePopup(popupEdit);
 }
@@ -121,7 +133,11 @@ function closePopupPhoto(){
 
 function closePopup(element){ 
     element.classList.toggle('popup_opened');//функция для закрытия попапов
- }
+}
+
+ function openPopup(element){ 
+    element.classList.toggle('popup_opened');//функция для открытия попапов
+}
 
 function likeCard(evt) {
 	evt.target.classList.toggle('element__like_is-active');//тоггл подключает/отключает закрашенное сердечко
@@ -132,8 +148,9 @@ function deleteCard(evt){
 
  
 
-editButton.addEventListener('click', openPopupEdit);
-addButton.addEventListener('click', openPopupAdd);
+editButton.addEventListener('click', renderPopupEdit);
+addButton.addEventListener('click', renderPopupAdd);
+
 closePopupEditButton.addEventListener('click', closePopupEdit);
 closePopupAddButton.addEventListener('click', closePopupAdd);
 closePopupPhotoButton.addEventListener('click', closePopupPhoto);
