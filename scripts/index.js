@@ -23,8 +23,8 @@ const initialCards = [
       name: 'Байкал',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-  ]; 
-
+  ];
+  
 const editButton = document.querySelector('.profile__edit-button');//нашли кнопку изменить
 const addButton = document.querySelector('.profile__add-button');//нашли кнопку добавить
 
@@ -145,7 +145,6 @@ function deleteCard(evt){
 	evt.target.closest('.element').remove();
 }
 
- 
 
 editButton.addEventListener('click', renderPopupEdit);
 addButton.addEventListener('click', renderPopupAdd);
@@ -153,6 +152,7 @@ addButton.addEventListener('click', renderPopupAdd);
 closePopupEditButton.addEventListener('click', closePopupEdit);
 closePopupAddButton.addEventListener('click', closePopupAdd);
 closePopupPhotoButton.addEventListener('click', closePopupPhoto);
+
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
