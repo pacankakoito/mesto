@@ -128,6 +128,15 @@ function deleteCard(evt){
 	evt.target.closest('.element').remove();
 }
 
+const setKeyClosePopupHandler = (popup) => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+         popup.classList.remove('popup_opened');
+    }
+  });
+}
+setKeyClosePopupHandler(popup);  
+
 
 editButton.addEventListener('click', renderPopupEdit);
 addButton.addEventListener('click', renderPopupAdd);
@@ -140,4 +149,8 @@ formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
 initElements(initialCards);
+
+
+
+
 
