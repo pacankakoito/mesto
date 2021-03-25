@@ -1,23 +1,78 @@
-// enableValidation({
-//     formSelector: '.form',
-//     inputSelector: '.form__input',
-//     submitButtonSelector: '.form__save-button',
-//     inactiveButtonClass: 'form__save-button_disabled',
-//     inputErrorClass: 'form__input_type_error',
-//     errorClass: 'form__error_active'
-//   }); 
+const settings={
+    formSelector: '.form',
+    fieldsetSelector: '.form__field',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__save-button',
+    inactiveButtonClass: '.form__save-button_disabled',
+    inputErrorClass: '.form__input_type_error',
+    errorClass: '.form__error_active'
+}
+ 
+function showInputError(formElement, inputElement, errorMessage) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);//нашли спан с ошибкой по id
+    inputElement.classList.add(settings.inputErrorClass);//добавили инпут с ошибкой (красная полосочка)
+    errorElement.classList.add(settings.errorClass);//выводим сообщение об ошибке
+    errorElement.textContent = errorMessage;//эррор элемент есть сообщение об ошибке
+};
 
 
-// //   function enableValidation(settingsObject) {
-// //     const formsList = Array.from(document.querySelectorAll(formSelector));//нашли формы в DOM и записали все в массив formList
+function hideInputError(formElement, inputElement) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove(settings.inputErrorClass);//убрали инпут с ошибкой
+    errorElement.classList.remove(settings.errorClass);//убрали сообщение об ошибке
+    errorElement.textContent = '';//обнулили эррор элемент
+};
 
-// //     formsList.forEach(formElement => {
-// //       formElement.addEventListener('submit', function (evt) {
-// //         evt.preventDefault();
-// //       })
-// //       const fieldsetList = Array.from(formElement.querySelectorAll(settingsObject.fieldsetSelector));
-// //       fieldsetList.forEach(fieldset => {
-// //         setEventListeners(fieldset);
-// //       })
-// //     })
-// //   }  
+function hasInvalidInput(inputList) { //проверяем есть ли хоть одно неисправное поле
+    return inputList.some(inputElement => {
+      return !inputElement.validity.valid;
+    })
+};
+function checkInputValidity(formElement, inputElement) {
+    if (!inputElement.validity.valid) {
+      showInputError(formElement, inputElement, inputElement.validationMessage);//если ошибка, выводим ошибку
+    } else {
+      hideInputError(formElement, inputElement);//если в норме, прячем ошибку
+    }
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)){
+        buttonElement.disabled = true;
+        buttonElement.classList.add(settings.inactiveButtonClass);//меняем состояние кнопки "сохранить"
+    } else {
+        buttonElement.disabled = false;
+        buttonElement.classList.remove(settings.inactiveButtonClass);
+    }
+}; 
+
+  
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));//массив из всех инпутов
+  const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);//нашли кнопку сохранить
+  toggleButtonState(inputList, formSubmitButton);
+  inputList.forEach(inputElement => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);//вызываем проверку 
+      toggleButtonState(inputList, formSubmitButton);//меняем состояние кнопки
+    })
+  })
+};
+
+function enableValidation(formSettings) {
+    const formsList = Array.from(document.querySelectorAll(formSettings.formSelector));
+    formsList.forEach(formElement => {
+      formElement.addEventListener('submit', function (evt) {
+        evt.preventDefault();
+      })
+      const fieldsetList = Array.from(formElement.querySelectorAll(formSettings.fieldsetSelector));
+      fieldsetList.forEach(fieldset => {
+        setEventListeners(fieldset);
+      })
+    })
+};
+  
+
+enableValidation(settings);
+  
+
