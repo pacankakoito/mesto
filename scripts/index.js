@@ -96,6 +96,7 @@ function renderPopupPhoto(evt){
   captionPopup.textContent=evt.target.alt;//задаем значения, отталкиваясь от события (копируем заголовок)
   picturePopup.alt=evt.target.alt;
   openPopup(popupPhoto);
+  
 }
 
 
@@ -128,14 +129,7 @@ function deleteCard(evt){
 	evt.target.closest('.element').remove();
 }
 
-const setKeyClosePopupHandler = (popup) => {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape' || evt.key === 'Esc') {
-         popup.classList.remove('popup_opened');
-    }
-  });
-}
-setKeyClosePopupHandler(popup);  
+
 
 
 editButton.addEventListener('click', renderPopupEdit);

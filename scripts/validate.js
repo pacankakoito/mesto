@@ -3,9 +3,10 @@ const settings={
     fieldsetSelector: '.form__field',
     inputSelector: '.form__input',
     submitButtonSelector: '.form__save-button',
-    inactiveButtonClass: '.form__save-button_disabled',
-    inputErrorClass: '.form__input_type_error',
-    errorClass: '.form__error_active'
+    inactiveButtonClass: 'form__save-button_disabled',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'form__error_active'
+	
 }
  
 function showInputError(formElement, inputElement, errorMessage) {
@@ -13,28 +14,28 @@ function showInputError(formElement, inputElement, errorMessage) {
     inputElement.classList.add(settings.inputErrorClass);//добавили инпут с ошибкой (красная полосочка)
     errorElement.classList.add(settings.errorClass);//выводим сообщение об ошибке
     errorElement.textContent = errorMessage;//эррор элемент есть сообщение об ошибке
-};
+}
 
 
 function hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(settings.inputErrorClass);//убрали инпут с ошибкой
-    errorElement.classList.remove(settings.errorClass);//убрали сообщение об ошибке
-    errorElement.textContent = '';//обнулили эррор элемент
-};
+  	errorElement.textContent = '';//очистили эррор элемент
+	  errorElement.classList.remove(settings.errorClass);//убрали сообщение об ошибке
+}
 
 function hasInvalidInput(inputList) { //проверяем есть ли хоть одно неисправное поле
     return inputList.some(inputElement => {
       return !inputElement.validity.valid;
     })
-};
+}
 function checkInputValidity(formElement, inputElement) {
     if (!inputElement.validity.valid) {
       showInputError(formElement, inputElement, inputElement.validationMessage);//если ошибка, выводим ошибку
     } else {
       hideInputError(formElement, inputElement);//если в норме, прячем ошибку
     }
-};
+}
 
 const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)){
@@ -44,9 +45,8 @@ const toggleButtonState = (inputList, buttonElement) => {
         buttonElement.disabled = false;
         buttonElement.classList.remove(settings.inactiveButtonClass);
     }
-}; 
+} 
 
-  
 function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));//массив из всех инпутов
   const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);//нашли кнопку сохранить
@@ -57,7 +57,7 @@ function setEventListeners(formElement) {
       toggleButtonState(inputList, formSubmitButton);//меняем состояние кнопки
     })
   })
-};
+}
 
 function enableValidation(formSettings) {
     const formsList = Array.from(document.querySelectorAll(formSettings.formSelector));
@@ -70,9 +70,8 @@ function enableValidation(formSettings) {
         setEventListeners(fieldset);
       })
     })
-};
+}
   
-
 enableValidation(settings);
   
 

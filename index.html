@@ -34,10 +34,10 @@
             <form class="form" name="form-edit" id="form-edit" novalidate>
                 <h2 class="form__title">Редактировать профиль</h2>
                 <fieldset class="form__field ">
-                    <input name="name" type="text" class="form__input form__input_type_name" placeholder="Имя" required minlength="2" maxlength="40">
-                    <span id='profile-name-error' class='form__error'></span>
-                    <input name="job" type="text" class="form__input form__input_type_job" placeholder="Описание" required minlength="2" maxlength="200">
-                    <span id='profile-caption-error' class='form__error'></span>
+                    <input class="form__input form__input_type_name" id="profile-name" name="name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
+                    <span class='form__error' id='profile-name-error'></span>
+                    <input class="form__input form__input_type_job" id="profile-caption" name="job" type="text" placeholder="Описание" required minlength="2" maxlength="200">
+                    <span class='form__error' id='profile-caption-error'></span>
                     <button class="form__save-button" type="submit">Сохранить</button>
                 </fieldset>
             </form>
@@ -50,10 +50,10 @@
             <form class="form" name="form-add" id="form-add" novalidate>
                 <h2 class="form__title">Новое Место</h2>
                 <fieldset class="form__field ">
-                    <input name="title" type="text" class="form__input form__input_type_title" placeholder="Название">
-                    <span id='add-title-error' class='form__error'></span>
-                    <input name="link" type="url" class="form__input form__input_type_link" placeholder="Ссылка на контейнер">
-                    <span id='add-link-error' class='form__error'></span>
+                    <input name="title" id="add-title" type="text" class="form__input form__input_type_title" placeholder="Название" required>
+                    <span class='form__error' id='add-title-error'></span>
+                    <input class="form__input form__input_type_link" id="add-link" name="link" type="url" placeholder="Ссылка на контейнер" required>
+                    <span class='form__error' id='add-link-error'></span>
                     <button class="form__save-button" type="submit">Сохранить</button>
                 </fieldset>
             </form>
