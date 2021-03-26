@@ -69,6 +69,7 @@ function createCard(name, link) {
   image.addEventListener('click', renderPopupPhoto);
   return card;
 }
+
 function addCard(card){
   const newCard = createCard(card.name, card.link);
   elementList.prepend(newCard);
@@ -85,6 +86,7 @@ function renderPopupEdit() { //открытие попапа для редакт
   jobInput.value = profileJob.textContent; // Вставьте новые значения с помощью textContent
   openPopup(popupEdit);
 }
+
 function renderPopupAdd(){
   titleInput.value="";
   linkInput.value="";
@@ -96,9 +98,7 @@ function renderPopupPhoto(evt){
   captionPopup.textContent=evt.target.alt;//задаем значения, отталкиваясь от события (копируем заголовок)
   picturePopup.alt=evt.target.alt;
   openPopup(popupPhoto);
-  
 }
-
 
 function formEditSubmitHandler(evt) {
   evt.preventDefault();
@@ -106,6 +106,7 @@ function formEditSubmitHandler(evt) {
   profileJob.textContent = jobInput.value; // Вставьте новые значения с помощью textContent
   closePopup(popupEdit); //закрыли попап после сохранения
 }
+
 function formAddSubmitHandler(evt) {
   evt.preventDefault();
   const cardAdded = {name: titleInput.value, link: linkInput.value};
@@ -115,11 +116,13 @@ function formAddSubmitHandler(evt) {
 
 function openPopup(element){ 
   element.classList.add('popup_opened');//функция для открытия попапов
-  openedPopupCheckValidity(element);//проверка при открытии не допускает добавления пустых карточек
+  openedPopupCheckValidity(element);//проверка при открытии на пустые поля не допускает добавления пустых карточек
+  document.addEventListener('keyup', handleEscUp);
 }
 
 function closePopup(element){ 
   element.classList.remove('popup_opened');//функция для закрытия попапов
+  // document.removeEventListener('keyup', handleEscUp);
 }
 
 function likeCard(evt) {
@@ -131,10 +134,19 @@ function deleteCard(evt){
 }
 
 
+const handleEscUp = (evt) => {
+  evt.preventDefault();
+  if (evt.key === 'Escape' || evt.key === 'Esc') { 
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup);
+  
+  }
+};
 
 
 editButton.addEventListener('click', renderPopupEdit);
 addButton.addEventListener('click', renderPopupAdd);
+
 
 closePopupEditButton.addEventListener('click', function(){closePopup(popupEdit)});
 closePopupAddButton.addEventListener('click', function(){closePopup(popupAdd)});

@@ -48,13 +48,15 @@ const toggleButtonState = (inputList, buttonElement) => {
 } 
 
 function openedPopupCheckValidity(formElement) {
-  const inputList  = Array.from(formElement.querySelectorAll(settings.inputSelector));
-  const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);
-  inputList.forEach((inputElement) => {
-    checkInputValidity(formElement, inputElement);//проверяем поля на валидность при запуске
-    hideInputError(formElement, inputElement);// удаляем ошибку при открытии попапа
-  });
-  toggleButtonState(inputList, formSubmitButton);//меняем состояние кнопки на неактивное
+  if(formElement.classList.contains('#form-edit') || formElement.classList.contains('#form-add')){//только для формы редактирования и добавления карточки
+    const inputList  = Array.from(formElement.querySelectorAll(settings.inputSelector));
+    const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);
+    inputList.forEach((inputElement) => {
+      checkInputValidity(formElement, inputElement);//проверяем поля на валидность при запуске
+      hideInputError(formElement, inputElement);// удаляем ошибку при открытии попапа
+    });
+    toggleButtonState(inputList, formSubmitButton);//меняем состояние кнопки на неактивное
+  }
 };
 
 
@@ -74,7 +76,7 @@ function enableValidation(formSettings) {
     const formsList = Array.from(document.querySelectorAll(formSettings.formSelector));
     formsList.forEach(formElement => {
       formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault(formElement, configObject);
+        evt.preventDefault(formElement, formSettings);
       })
         setEventListeners(formElement, formSettings);
       });
