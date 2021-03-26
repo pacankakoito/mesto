@@ -115,6 +115,7 @@ function formAddSubmitHandler(evt) {
 
 function openPopup(element){ 
   element.classList.add('popup_opened');//функция для открытия попапов
+  openedPopupCheckValidity(element);//проверка при открытии не допускает добавления пустых карточек
 }
 
 function closePopup(element){ 

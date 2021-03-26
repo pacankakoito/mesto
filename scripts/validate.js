@@ -40,12 +40,23 @@ function checkInputValidity(formElement, inputElement) {
 const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)){
         buttonElement.disabled = true;
-        buttonElement.classList.add(settings.inactiveButtonClass);//меняем состояние кнопки "сохранить"
+        buttonElement.classList.add(settings.inactiveButtonClass);//меняем состояние кнопки "сохранить" на неактивное
     } else {
         buttonElement.disabled = false;
-        buttonElement.classList.remove(settings.inactiveButtonClass);
+        buttonElement.classList.remove(settings.inactiveButtonClass);//меняем состояние кнопки "сохранить" на активное
     }
 } 
+
+function openedPopupCheckValidity(formElement) {
+  const inputList  = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);
+  inputList.forEach((inputElement) => {
+    checkInputValidity(formElement, inputElement);//проверяем поля на валидность при запуске
+    hideInputError(formElement, inputElement);// удаляем ошибку при открытии попапа
+  });
+  toggleButtonState(inputList, formSubmitButton);//меняем состояние кнопки на неактивное
+};
+
 
 function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));//массив из всех инпутов
@@ -63,13 +74,10 @@ function enableValidation(formSettings) {
     const formsList = Array.from(document.querySelectorAll(formSettings.formSelector));
     formsList.forEach(formElement => {
       formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
+        evt.preventDefault(formElement, configObject);
       })
-      const fieldsetList = Array.from(formElement.querySelectorAll(formSettings.fieldsetSelector));
-      fieldsetList.forEach(fieldset => {
-        setEventListeners(fieldset);
-      })
-    })
+        setEventListeners(formElement, formSettings);
+      });
 }
   
 enableValidation(settings);
