@@ -29,6 +29,7 @@ const editButton = document.querySelector('.profile__edit-button');//нашли 
 const addButton = document.querySelector('.profile__add-button');//нашли кнопку добавить
 
 const popup = document.querySelector('.popup');
+const popupList = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupPhoto = document.querySelector('.popup_type_photo');
@@ -117,12 +118,13 @@ function formAddSubmitHandler(evt) {
 function openPopup(element){ 
   element.classList.add('popup_opened');//функция для открытия попапов
   openedPopupCheckValidity(element);//проверка при открытии на пустые поля не допускает добавления пустых карточек
-  document.addEventListener('keyup', handleEscUp);
+  document.addEventListener('keyup', handleEscUp);//Навешиваем слушателя при открытом попап для Esc
+
 }
 
 function closePopup(element){ 
   element.classList.remove('popup_opened');//функция для закрытия попапов
-  // document.removeEventListener('keyup', handleEscUp);
+  document.removeEventListener('keyup', handleEscUp);//убираем слушателя при закрытии попапа
 }
 
 function likeCard(evt) {
@@ -134,7 +136,7 @@ function deleteCard(evt){
 }
 
 
-const handleEscUp = (evt) => {
+const handleEscUp = (evt) => { //при нажатом Escape закрываем попап
   evt.preventDefault();
   if (evt.key === 'Escape' || evt.key === 'Esc') { 
     const activePopup = document.querySelector('.popup_opened');
@@ -143,6 +145,18 @@ const handleEscUp = (evt) => {
   }
 };
 
+const setClosePopupHandlers = () => {// универсальная закрывалка при нажатии на оверлей или кнопку
+  popupList.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup);
+      } if (evt.target.classList.contains('popup__close-button')) {
+        closePopup(popup);
+      }
+    })
+  })
+}
+setClosePopupHandlers();
 
 editButton.addEventListener('click', renderPopupEdit);
 addButton.addEventListener('click', renderPopupAdd);
