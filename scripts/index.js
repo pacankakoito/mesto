@@ -41,7 +41,7 @@ const closePopupPhotoButton = document.querySelector('#popup-photo__close-button
 const formEdit=document.querySelector('#form-edit');
 const nameInput=formEdit.querySelector('.form__input_type_name');// Воспользуйтесь инструментом .querySelector()
 const jobInput=formEdit.querySelector('.form__input_type_job');// Воспользуйтесь инструментом .querySelector()
-// Находим профиль в DOM
+
 const formAdd=document.querySelector('#form-add');
 const titleInput=formAdd.querySelector('.form__input_type_title');// Воспользуйтесь инструментом .querySelector()
 const linkInput=formAdd.querySelector('.form__input_type_link');// Воспользуйтесь инструментом .querySelector()
@@ -86,12 +86,14 @@ function renderPopupEdit() { //открытие попапа для редакт
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent; // Вставьте новые значения с помощью textContent
   openPopup(popupEdit);
+  openedPopupCheckValidity(popupEdit);//проверка при открытии на пустые поля
 }
 
 function renderPopupAdd(){
   titleInput.value="";
   linkInput.value="";
   openPopup(popupAdd);
+  openedPopupCheckValidity(popupAdd);//проверка при открытии на пустые поля 
 }
 
 function renderPopupPhoto(evt){
@@ -117,7 +119,6 @@ function formAddSubmitHandler(evt) {
 
 function openPopup(element){ 
   element.classList.add('popup_opened');//функция для открытия попапов
-  openedPopupCheckValidity(element);//проверка при открытии на пустые поля не допускает добавления пустых карточек
   document.addEventListener('keyup', handleEscUp);//Навешиваем слушателя при открытом попап для Esc
 
 }

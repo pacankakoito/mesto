@@ -48,7 +48,6 @@ const toggleButtonState = (inputList, buttonElement) => {
 } 
 
 function openedPopupCheckValidity(formElement) {
-  if(formElement.classList.contains('#form-edit') || formElement.classList.contains('#form-add')){//только для формы редактирования и добавления карточки
     const inputList  = Array.from(formElement.querySelectorAll(settings.inputSelector));
     const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);
     inputList.forEach((inputElement) => {
@@ -56,7 +55,6 @@ function openedPopupCheckValidity(formElement) {
       hideInputError(formElement, inputElement);// удаляем ошибку при открытии попапа
     });
     toggleButtonState(inputList, formSubmitButton);//меняем состояние кнопки на неактивное
-  }
 };
 
 
