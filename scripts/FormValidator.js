@@ -1,3 +1,3 @@
-class FormValidator{
-    
+export class FormValidator{
+
 }
