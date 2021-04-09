@@ -4,11 +4,9 @@
 
  export class Card{
 
- constructor(data, cardSelector) {
-   this._cardSelector = cardSelector;
-   this._name = data.name;
-   this._link = data.link;
-
+ constructor(cardData, cardSelector) {
+    this._cardSelector = cardSelector;
+    this._cardData = cardData;
   }
 
   _getTemplate(){
@@ -18,16 +16,16 @@
     .querySelector('.element')
     .cloneNode(true);
 
-    this._element = cardElement;// нашли темплейт в разметке
+    this._element = cardElement;// нашли темплейт в разметке и скопировали
 
     return cardElement;
   }
   generateCard() {     
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
-    this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__image').src = this._cardData.link;
+    this._element.querySelector('.element__image').alt = this._cardData.name;
+    this._element.querySelector('.element__title').textContent = this._cardData.name;
     return this._element;//сгенерировали карточку
     } 
 
@@ -36,7 +34,7 @@
       this._openPopupPhoto(evt);//слушатель нажатия на картинку для открывания большой картинки
     });
     this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
-      this._deleteCard(evt);//слушатель нажатия на помойку
+      this._deleteCard(evt);//слушатель нажатия на "помойку"
     });
     this._element.querySelector('.element__like').addEventListener('click', (evt) => {
       this._likeCard(evt);//слушатель нажатия на лайк
@@ -60,20 +58,15 @@
       picturePopup.alt=evt.target.alt;
       popupPhoto.classList.add('popup_opened');
   }
-  // _closePopup(element){ 
-  //     element.classList.remove('popup_opened');//функция для закрытия попапов
-  //     document.removeEventListener('keyup', handleEscUp);//убираем слушателя при закрытии попапа
-  //     popupPhoto.classList.remove('popup_opened');
-  //   }
-
+  
   _closePhotoPopup(evt) {
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
-      popupPhoto.classList.remove('popup_opened');//закрыватель попапа
+      popupPhoto.classList.remove('popup_opened');//закрыватель попапа с картинкой на кнопку или оверлей
     }
   }
-  _closePhotoPopup(evt) {
+  _closePhotoPopupEscUp(evt) {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
-      popupPhoto.classList.remove('popup_opened');//закрыватель попапа
+      popupPhoto.classList.remove('popup_opened');//закрыватель попапа с картинкой на Esc
     };
   }
 

@@ -1,5 +1,5 @@
 import {Card} from './Card.js';//импортировали класс кард из файла
-// import {FormValidator} from './FormValidator';//импортировали класс форм валидатор из файла
+import {FormValidator} from './FormValidator.js';//импортировали класс форм валидатор из файла
 const initialCards = [
   {
     name: 'Архыз',
@@ -34,11 +34,9 @@ const popup = document.querySelector('.popup');
 const popupList = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
-const popupPhoto = document.querySelector('.popup_type_photo');
 
 const closePopupEditButton = document.querySelector('#popup-edit__close-button');
 const closePopupAddButton = document.querySelector('#popup-add__close-button');
-const closePopupPhotoButton = document.querySelector('#popup-photo__close-button');
 
 const formEdit=document.querySelector('#form-edit');
 const nameInput=formEdit.querySelector('.form__input_type_name');// Воспользуйтесь инструментом .querySelector()
@@ -54,29 +52,19 @@ const profileJob=profile.querySelector(".profile__subtitle");// Воспольз
 
 const elementList = document.querySelector('.elements__list');
 
-const picturePopup=document.querySelector('.popup__image');
-const captionPopup=document.querySelector('.popup__caption');
+
+const validationSettings={
+  formSelector: '.form',
+  fieldsetSelector: '.form__field',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  inactiveButtonClass: 'form__save-button_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error_active'
+
+}
 
 
-// function createCard(name, link) {
-//   const templateElement = document.querySelector('#template').content;//нашли темплейт
-//   const card = templateElement.cloneNode(true);//клонировали ноду
-//   const likeButton = card.querySelector('.element__like');
-//   const deleteButton = card.querySelector('.element__delete');
-//   const image = card.querySelector('.element__image');
-//   image.src = link;//присвоили значения
-//   image.alt = name;
-//   card.querySelector('.element__title').textContent = name;
-//   likeButton.addEventListener('click', likeCard);//cслушаем кнопку и пользуемся функцией лайк
-// 	deleteButton.addEventListener('click', deleteCard);//cслушаем кнопку и пользуемся функцией удалить
-//   image.addEventListener('click', renderPopupPhoto);
-//   return card;
-// }
-
-// function addCard(card){
-//   const newCard = createCard(card.name, card.link);
-//   elementList.prepend(newCard);
-// }
 const addCard = (element) => {
   const card = new Card(element, '#template');
   const cardElement = card.generateCard();
@@ -93,22 +81,13 @@ function renderPopupEdit() { //открытие попапа для редакт
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent; // Вставьте новые значения с помощью textContent
   openPopup(popupEdit);
-  openedPopupCheckValidity(popupEdit);//проверка при открытии на пустые поля
 }
 
 function renderPopupAdd(){
   titleInput.value="";
   linkInput.value="";
   openPopup(popupAdd);
-  openedPopupCheckValidity(popupAdd);//проверка при открытии на пустые поля 
 }
-
-// function renderPopupPhoto(evt){
-//   picturePopup.src=evt.target.src;//задаем значения, отталкиваясь от события (URL картинки копируем)
-//   captionPopup.textContent=evt.target.alt;//задаем значения, отталкиваясь от события (копируем заголовок)
-//   picturePopup.alt=evt.target.alt;
-//   openPopup(popupPhoto);
-// }
 
 function formEditSubmitHandler(evt) {
   evt.preventDefault();
@@ -135,14 +114,6 @@ function closePopup(element){
   document.removeEventListener('keyup', handleEscUp);//убираем слушателя при закрытии попапа
 }
 
-function likeCard(evt) {
-	evt.target.classList.toggle('element__like_is-active');//тоггл подключает/отключает закрашенное сердечко
-}
-
-function deleteCard(evt){
-	evt.target.closest('.element').remove();
-} 
-
 
 const handleEscUp = (evt) => { //при нажатом Escape закрываем попап
   evt.preventDefault();
@@ -166,14 +137,18 @@ const setClosePopupHandlers = () => {// универсальная закрыв�
 }
 setClosePopupHandlers();
 
+const setValidation = (settings, formElement) => {
+  const formValidator = new FormValidator(settings, formElement);
+  formValidator.enableValidation();//установили проверку валидности для каждой формы
+}
+setValidation(validationSettings, formEdit);
+setValidation(validationSettings, formAdd);
+
+
 editButton.addEventListener('click', renderPopupEdit);
 addButton.addEventListener('click', renderPopupAdd);
-
-
 closePopupEditButton.addEventListener('click', function(){closePopup(popupEdit)});
 closePopupAddButton.addEventListener('click', function(){closePopup(popupAdd)});
-// closePopupPhotoButton.addEventListener('click', function(){closePopup(popupPhoto)});
-
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
