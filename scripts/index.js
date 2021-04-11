@@ -1,32 +1,7 @@
 import {Card} from './Card.js';//импортировали класс кард из файла
 import {FormValidator} from './FormValidator.js';//импортировали класс форм валидатор из файла
 import {openPopup, closePopup} from './Utils.js';
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import {initialCards} from './initial-cards.js';
 
 const editButton = document.querySelector('.profile__edit-button');//нашли кнопку изменить
 const addButton = document.querySelector('.profile__add-button');//нашли кнопку добавить
@@ -148,7 +123,6 @@ closePopupAddButton.addEventListener('click', function(){closePopup(popupAdd)});
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
-// initElements(initialCards);
 
 
 

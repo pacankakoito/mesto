@@ -1,4 +1,3 @@
-
 export class FormValidator{
     constructor(settings, formElement) {
         this._settings = settings;
@@ -50,11 +49,7 @@ export class FormValidator{
         const inputList = Array.from(formElement.querySelectorAll(this._settings.inputSelector));//массив из всех инпутов
         const formSubmitButton = formElement.querySelector(this._settings.submitButtonSelector);//нашли кнопку сохранить
         this._toggleButtonState(inputList, formSubmitButton);
-
-        formElement.addEventListener('reset', () => {//проверяем и сбрасываем после ресета
-          this._checkInputValidity(formElement, inputElement);
-        })
-        
+     
         openFormButtonsList.forEach(button => { //после нажатия на кнопку открытия попапа обнуляем ошибки и сбрасываем кнопку
           button.addEventListener('click', () => {
             this._toggleButtonState(inputList, formSubmitButton);
