@@ -1,5 +1,3 @@
-const openFormButtonSelector = '.open-button';
-const openFormButtonsList = Array.from(document.querySelectorAll(openFormButtonSelector));
 
 export class FormValidator{
     constructor(settings, formElement) {
@@ -48,18 +46,21 @@ export class FormValidator{
 
          
     _setEventListeners(formElement) {
-        openFormButtonSelector.addEventListener('click', () => {//проверяем и сбрасываем кнопку после ресета
-        this._hideInputError();
-         })
+        const openFormButtonsList = Array.from(document.querySelectorAll(this._settings.openFormButtonSelector));
         const inputList = Array.from(formElement.querySelectorAll(this._settings.inputSelector));//массив из всех инпутов
         const formSubmitButton = formElement.querySelector(this._settings.submitButtonSelector);//нашли кнопку сохранить
         this._toggleButtonState(inputList, formSubmitButton);
 
-        
+        formElement.addEventListener('reset', () => {//проверяем и сбрасываем после ресета
+          this._checkInputValidity(formElement, inputElement);
+        })
         
         openFormButtonsList.forEach(button => { //после нажатия на кнопку открытия попапа обнуляем ошибки и сбрасываем кнопку
           button.addEventListener('click', () => {
             this._toggleButtonState(inputList, formSubmitButton);
+            inputList.forEach((inputElement) => {
+              this._hideInputError(formElement, inputElement);
+            })
           })
         })
         

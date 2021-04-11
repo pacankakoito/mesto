@@ -1,6 +1,6 @@
 import {Card} from './Card.js';//импортировали класс кард из файла
 import {FormValidator} from './FormValidator.js';//импортировали класс форм валидатор из файла
-import {openPopup, closePopup, handleEscUp} from './Utils.js';
+import {openPopup, closePopup} from './Utils.js';
 const initialCards = [
   {
     name: 'Архыз',
@@ -53,7 +53,7 @@ const profileName=profile.querySelector(".profile__title"); // Воспольз�
 const profileJob=profile.querySelector(".profile__subtitle");// Воспользуйтесь инструментом .querySelector()
 
 const elementList = document.querySelector('.elements__list');
-
+const templateElement='#template';
 
 
 const validationSettings={
@@ -63,12 +63,12 @@ const validationSettings={
   submitButtonSelector: '.form__save-button',
   inactiveButtonClass: 'form__save-button_disabled',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error_active'
-
+  errorClass: 'form__error_active',
+  openFormButtonSelector: '.open-button'
 }
 
 const createCard=(element) => {
-  const card = new Card(element, '#template');
+  const card = new Card(element, templateElement);
   const cardElement = card.generateCard();
   return cardElement;
 }
