@@ -1,5 +1,6 @@
 import {Card} from './Card.js';//импортировали класс кард из файла
 import {FormValidator} from './FormValidator.js';//импортировали класс форм валидатор из файла
+import {openPopup, closePopup, handleEscUp} from './Utils.js';
 const initialCards = [
   {
     name: 'Архыз',
@@ -34,6 +35,7 @@ const popup = document.querySelector('.popup');
 const popupList = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
+const popupPhoto = document.querySelector('.popup_type_photo');
 
 const closePopupEditButton = document.querySelector('#popup-edit__close-button');
 const closePopupAddButton = document.querySelector('#popup-add__close-button');
@@ -53,6 +55,7 @@ const profileJob=profile.querySelector(".profile__subtitle");// Воспольз
 const elementList = document.querySelector('.elements__list');
 
 
+
 const validationSettings={
   formSelector: '.form',
   fieldsetSelector: '.form__field',
@@ -64,18 +67,21 @@ const validationSettings={
 
 }
 
-
-const addCard = (element) => {
+const createCard=(element) => {
   const card = new Card(element, '#template');
   const cardElement = card.generateCard();
-  elementList.prepend(cardElement);
+  return cardElement;
 }
 
-function initElements(array) {//инициализировали заполнение
-  array.forEach(function(item){
-    addCard(item);
-  });
+const addCard = (element) => {
+  const newCard = createCard(element);
+  elementList.prepend(newCard);
 }
+
+initialCards.forEach(element => {
+  const cardElement = createCard(element);
+  elementList.prepend(cardElement);
+})
 
 function renderPopupEdit() { //открытие попапа для редактирования
   nameInput.value = profileName.textContent;
@@ -103,28 +109,17 @@ function formAddSubmitHandler(evt) {
   closePopup(popupAdd); //закрыли попап после сохранения
 }
 
-function openPopup(element){ 
-  element.classList.add('popup_opened');//функция для открытия попапов
-  document.addEventListener('keyup', handleEscUp);//Навешиваем слушателя при открытом попап для Esc
 
+const addCardFormValidator = (settings, formElement) => {
+  const formValidator = new FormValidator(settings, formAdd);
+  formValidator.enableValidation();//установили проверку валидности для каждой формы
+}
+const editCardFormValidator = (settings, formElement) => {
+  const formValidator = new FormValidator(settings, formEdit);
+  formValidator.enableValidation();//установили проверку валидности для каждой формы
 }
 
-function closePopup(element){ 
-  element.classList.remove('popup_opened');//функция для закрытия попапов
-  document.removeEventListener('keyup', handleEscUp);//убираем слушателя при закрытии попапа
-}
-
-
-const handleEscUp = (evt) => { //при нажатом Escape закрываем попап
-  evt.preventDefault();
-  if (evt.key === 'Escape' || evt.key === 'Esc') { 
-    const activePopup = document.querySelector('.popup_opened');
-    closePopup(activePopup);
-  
-  }
-};
-
-const setClosePopupHandlers = () => {// универсальная закрывалка при нажатии на оверлей или кнопку
+const closePopupHandlers = () => {// универсальная закрывалка при нажатии на оверлей или кнопку
   popupList.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {
@@ -135,24 +130,25 @@ const setClosePopupHandlers = () => {// универсальная закрыв�
     })
   })
 }
-setClosePopupHandlers();
+closePopupHandlers();
 
-const setValidation = (settings, formElement) => {
-  const formValidator = new FormValidator(settings, formElement);
-  formValidator.enableValidation();//установили проверку валидности для каждой формы
-}
-setValidation(validationSettings, formEdit);
-setValidation(validationSettings, formAdd);
+editButton.addEventListener('click', function() {
+  editCardFormValidator(validationSettings, formEdit);
+  renderPopupEdit();
+});
 
 
-editButton.addEventListener('click', renderPopupEdit);
-addButton.addEventListener('click', renderPopupAdd);
+addButton.addEventListener('click', function() {
+  addCardFormValidator(validationSettings, formAdd);
+  renderPopupAdd();
+});
+
 closePopupEditButton.addEventListener('click', function(){closePopup(popupEdit)});
 closePopupAddButton.addEventListener('click', function(){closePopup(popupAdd)});
 formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
-initElements(initialCards);
+// initElements(initialCards);
 
 
 
