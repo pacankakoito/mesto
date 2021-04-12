@@ -84,18 +84,6 @@ function formAddSubmitHandler(evt) {
   closePopup(popupAdd); //закрыли попап после сохранения
 }
 
-
-
-
-// const addCardFormValidator = (settings, formElement) => {
-//   const formValidator = new FormValidator(settings, formAdd);
-//   formValidator.enableValidation();//установили проверку валидности для каждой формы
-// }
-// const editCardFormValidator = (settings, formElement) => {
-//   const formValidator = new FormValidator(settings, formEdit);
-//   formValidator.enableValidation();//установили проверку валидности для каждой формы
-// }
-
 const closePopupHandlers = () => {// универсальная закрывалка при нажатии на оверлей или кнопку
   popupList.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
