@@ -1,4 +1,4 @@
-# Проект 4-6: Место
+# Проект 4-7: Место
 
 ### Обзор
 * https://pacankakoito.github.io/mesto/
