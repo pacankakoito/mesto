@@ -110,13 +110,11 @@ const closePopupHandlers = () => {// универсальная закрывал
 closePopupHandlers();
 
 editButton.addEventListener('click', function() {
-  // editCardFormValidator(validationSettings, formEdit);
   renderPopupEdit();
 });
 
 
 addButton.addEventListener('click', function() {
-  // addCardFormValidator(validationSettings, formAdd);
   renderPopupAdd();
 });
 
