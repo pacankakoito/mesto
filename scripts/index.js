@@ -85,14 +85,16 @@ function formAddSubmitHandler(evt) {
 }
 
 
-const addCardFormValidator = (settings, formElement) => {
-  const formValidator = new FormValidator(settings, formAdd);
-  formValidator.enableValidation();//установили проверку валидности для каждой формы
-}
-const editCardFormValidator = (settings, formElement) => {
-  const formValidator = new FormValidator(settings, formEdit);
-  formValidator.enableValidation();//установили проверку валидности для каждой формы
-}
+
+
+// const addCardFormValidator = (settings, formElement) => {
+//   const formValidator = new FormValidator(settings, formAdd);
+//   formValidator.enableValidation();//установили проверку валидности для каждой формы
+// }
+// const editCardFormValidator = (settings, formElement) => {
+//   const formValidator = new FormValidator(settings, formEdit);
+//   formValidator.enableValidation();//установили проверку валидности для каждой формы
+// }
 
 const closePopupHandlers = () => {// универсальная закрывалка при нажатии на оверлей или кнопку
   popupList.forEach((popup) => {
@@ -108,13 +110,13 @@ const closePopupHandlers = () => {// универсальная закрывал
 closePopupHandlers();
 
 editButton.addEventListener('click', function() {
-  editCardFormValidator(validationSettings, formEdit);
+  // editCardFormValidator(validationSettings, formEdit);
   renderPopupEdit();
 });
 
 
 addButton.addEventListener('click', function() {
-  addCardFormValidator(validationSettings, formAdd);
+  // addCardFormValidator(validationSettings, formAdd);
   renderPopupAdd();
 });
 
@@ -124,7 +126,11 @@ formEdit.addEventListener('submit', formEditSubmitHandler);
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
 
+const addCardFormValidator = new FormValidator(validationSettings, formAdd);
+addCardFormValidator.enableValidation();
 
+const editCardFormValidator = new FormValidator(validationSettings, formEdit);
+editCardFormValidator.enableValidation();
 
 
 

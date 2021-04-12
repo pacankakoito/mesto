@@ -9,6 +9,8 @@ import {handleEscUp} from './Utils.js';
  constructor(cardData, cardSelector) {
     this._cardSelector = cardSelector;
     this._cardData = cardData;
+    this._element = this._getTemplate();
+    this._image = this._element.querySelector('.element__image');
     
   }
 
@@ -24,9 +26,7 @@ import {handleEscUp} from './Utils.js';
     return cardElement;
   }
   generateCard() {     
-    this._element = this._getTemplate();
     this._setEventListeners();
-    this._image = this._element.querySelector('.element__image');
     this._image.src = this._cardData.link;
     this._image.alt = this._cardData.name;
     this._element.querySelector('.element__title').textContent = this._cardData.name;
@@ -35,7 +35,7 @@ import {handleEscUp} from './Utils.js';
   } 
 
   _setEventListeners() {
-    this._element.querySelector('.element__image').addEventListener('click', (evt) => {
+    this._image.addEventListener('click', (evt) => {
       this._openPopupPhoto(evt);//слушатель нажатия на картинку для открывания большой картинки
     });
     this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
